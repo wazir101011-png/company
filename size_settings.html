@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script src="./config.js"></script>
+<script src="./common.js"></script>
+<meta name="theme-color" content="#0d0d0d">
+<title>سائز سیٹنگز - UNIT BUSINESS GROUP</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#0d0d0d;--card:#1a1a1a;--card2:#222;--line:#333;--tx:#fff;--mut:#9aa0a6;--acc:#7d2ae8}
+body.light-theme{--bg:#f3f4f6;--card:#fff;--card2:#f1f3f5;--line:#d1d5db;--tx:#111827;--mut:#6b7280}
+body{font-family:Tahoma,Arial,sans-serif;margin:0;background:var(--bg);color:var(--tx);direction:rtl;text-align:right;min-height:100vh;padding-bottom:40px}
+body.lang-en{direction:ltr;text-align:left}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:linear-gradient(135deg,#7d2ae8,#c2185b);color:#fff;box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.top h1{flex:1;margin:0;font-size:clamp(15px,4.4vw,20px);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb{border:none;border-radius:10px;background:rgba(255,255,255,.22);color:#fff;font-weight:bold;font-size:13px;padding:8px 12px;cursor:pointer;text-decoration:none;white-space:nowrap;font-family:inherit}
+.tb:active{transform:scale(.96)}
+.shell{max-width:1100px;margin:0 auto;padding:14px}
+.hint{color:var(--mut);font-size:12px;line-height:1.7;margin:2px 2px 12px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.tiles{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{position:relative;border:none;border-radius:18px;padding:16px 10px 14px;background:var(--card);color:var(--tx);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:inherit;box-shadow:0 2px 10px rgba(0,0,0,.25);border:1px solid var(--line);min-height:128px;justify-content:center;text-align:center;transition:transform .12s}
+.tile:active{transform:scale(.96)}
+.tile .ic{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.tile .nm{font-size:13.5px;font-weight:bold;line-height:1.35}
+.tile .ct{position:absolute;top:8px;inset-inline-end:8px;min-width:22px;height:22px;border-radius:11px;background:#28a745;color:#fff;font-size:11px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 6px}
+.tile .ct.on{display:flex}
+.panel{display:none}
+body.in-panel .panel{display:block}body.in-panel .tilesWrap{display:none}
+.ph{position:sticky;top:calc(54px + env(safe-area-inset-top,0px));z-index:10;display:flex;align-items:center;gap:10px;padding:10px 12px;margin:0 0 12px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.ph .ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:0 0 auto}
+.ph .nm{flex:1;font-weight:bold;font-size:15px}
+.pb{border:none;border-radius:10px;padding:8px 12px;font-weight:bold;font-size:12.5px;cursor:pointer;font-family:inherit;color:#fff}
+.pb.back{background:#007bff}.pb.rst{background:#c62828}
+.groups{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:820px){.groups{grid-template-columns:1fr 1fr}}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;border-inline-start:5px solid var(--gc,#7d2ae8)}
+.grp.set{box-shadow:0 0 0 2px rgba(40,167,69,.5)}
+.gh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.gh b{flex:1;font-size:14px;line-height:1.4}
+.gr{border:none;background:var(--card2);color:var(--tx);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:15px}
+.ctl{margin-bottom:9px}
+.ctl label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px;font-weight:bold}
+.step{display:flex;gap:6px;direction:ltr}
+.step input,.ctl select{flex:1 1 auto;min-width:0;text-align:center;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--tx);font-size:16px;font-family:inherit;width:100%}
+.ctl select{font-size:14px}
+.sb{flex:0 0 48px;border:none;border-radius:10px;background:var(--gc,#7d2ae8);color:#fff;font-size:24px;font-weight:bold;cursor:pointer;line-height:1}
+.sb:active{transform:scale(.92)}
+.sample{margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--card2);border:1px dashed var(--line);text-align:center;overflow:hidden;white-space:nowrap;min-height:34px}
+.rg2{display:grid;grid-template-columns:1fr;gap:0}.step input{min-width:70px}
+.tile.act{outline:3px solid var(--acc);background:var(--card2)}
+@media(min-width:960px){.shell{max-width:1320px;display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:start}
+.tilesWrap,body.in-panel .tilesWrap{display:block!important;position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;padding:2px}
+.tiles{grid-template-columns:1fr;gap:8px}.tile{flex-direction:row;min-height:0;padding:9px 12px;gap:12px;justify-content:flex-start;text-align:start;border-radius:14px}
+.tile .ic{width:40px;height:40px;font-size:20px;border-radius:12px}.tile .nm{font-size:13px}.tile .ct{position:static;margin-inline-start:auto}
+.panel{display:block!important}.pb.back,.hint{display:none}.ph{top:76px}.groups{grid-template-columns:1fr 1fr}}
+@media(min-width:1500px){.groups{grid-template-columns:repeat(3,1fr)}.shell{max-width:1700px}}
+.toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#28a745;color:#fff;padding:9px 18px;border-radius:22px;font-size:13px;font-weight:bold;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="top"><button class="tb" id="btnBack" type="button">🔙</button><h1 id="ttl"></h1><button class="tb" id="btnAllReset" type="button">↩</button></div>
+<div class="shell">
+ <div class="tilesWrap"><p class="hint" id="hint"></p><div class="tiles" id="tiles"></div></div>
+ <div class="panel" id="panel"><div class="ph"><button class="pb back" id="pBack" type="button"></button><span class="ic" id="pIc"></span><span class="nm" id="pNm"></span><button class="pb rst" id="pRst" type="button"></button></div><div class="groups" id="groups"></div></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function () {
+ var D = document;
+ try { if ((App.store.get('rohan_theme_mode') || 'dark') === 'light') D.body.classList.add('light-theme'); } catch (e) {}
+ var en = (App.store.get('rohan_global_lang') || 'ur') === 'en';
+ if (en) { D.body.classList.add('lang-en'); D.documentElement.lang = 'en'; }
+ var T = function (u, e) { return en ? e : u; };
+ var FONTS = `<option value="">ڈیفالٹ / Default</option><option value="Arial, sans-serif">Arial</option><option value="Tahoma, sans-serif">Tahoma</option><option value="Verdana, sans-serif">Verdana</option><option value="&#39;Segoe UI&#39;, sans-serif">Segoe UI</option><option value="system-ui, sans-serif">System</option><option value="&#39;Times New Roman&#39;, serif">Times New Roman</option><option value="Georgia, serif">Georgia</option><option value="&#39;Courier New&#39;, monospace">Courier New</option><option value="&#39;Noto Nastaliq Urdu&#39;, &#39;Jameel Noori Nastaleeq&#39;, serif">نستعلیق / Nastaliq</option><option value="&#39;Noto Naskh Arabic&#39;, &#39;Traditional Arabic&#39;, serif">نسخ / Naskh</option>`;
+ // the old "all tables" settings (still stored in the same keys the branch screen used)
+ var TBLK = { head: { s: 'rohan_tbl_head_size', f: 'rohan_tbl_head_font' }, text: { s: 'rohan_tbl_text_size', f: 'rohan_tbl_text_font' }, num: { s: 'rohan_tbl_num_size', f: 'rohan_tbl_num_font' }, acc: { s: 'rohan_tbl_acc_size', f: 'rohan_tbl_acc_font' }, rows: { h: 'rohan_tbl_row_h' }, cols: { w: 'rohan_tbl_col_w' } };
+ var GEN = { id: 'tbl', ico: '🧮', c: '#455a64', ur: 'عمومی ٹیبل (سب جدولوں کے لیے)', en: 'All tables (general)', g: [
+  { id: 'head', ur: 'ہیڈر (کالم کے عنوان)', en: 'Table headers', ctl: 'sf', sample: 1 },
+  { id: 'text', ur: 'متن (نام، تفصیل)', en: 'Text cells', ctl: 'sf', sample: 1 },
+  { id: 'num', ur: 'نمبر / رقم', en: 'Numbers', ctl: 'sf', sample: 1 },
+  { id: 'acc', ur: 'کھاتہ نمبر', en: 'Account no.', ctl: 'sf', sample: 1 },
+  { id: 'rows', ur: 'قطار کی اونچائی', en: 'Row height', ctl: 'h' },
+  { id: 'cols', ur: 'کالم کی چوڑائی', en: 'Column width', ctl: 'w' } ] };
+ var PAGES = [GEN].concat(window.__ubgSizeSpec || []);
+ var CL = { s: ['سائز (1–100)', 'Size (1–100)', 14], f: ['فونٹ اسٹائل', 'Font style', 0], b: ['ڈبے / بٹن کا سائز (50 = عام)', 'Box / button size (50 = normal)', 50], h: ['اونچائی (1–100)', 'Height (1–100)', 30], w: ['چوڑائی (1–100)', 'Width (1–100)', 10] };
+ var key = function (p, g, x) { return p.id === 'tbl' ? ((TBLK[g.id] || {})[x] || '') : 'rohan_sz_' + p.id + '_' + g.id + '_' + x; };
+ var get = function (k) { try { return App.store.get(k) || ''; } catch (e) { return ''; } };
+ var put = function (k, v) { try { App.store.set(k, v); } catch (e) {} };
+ var tt, toast = function () { var t = D.getElementById('toast'); t.textContent = T('✅ محفوظ ہو گیا', '✅ Saved'); t.classList.add('on'); clearTimeout(tt); tt = setTimeout(function () { t.classList.remove('on'); }, 1100); };
+ var cnt = function (p) { var n = 0; p.g.forEach(function (g) { g.ctl.split('').forEach(function (x) { if (get(key(p, g, x))) n++; }); }); return n; };
+ var cur = null, wide = window.matchMedia('(min-width:960px)');
+ function tiles() {
+  var h = '';
+  PAGES.forEach(function (p) { var n = cnt(p); h += '<button class="tile" type="button" data-p="' + p.id + '"><span class="ct' + (n ? ' on' : '') + '">' + n + '</span><span class="ic" style="background:' + p.c + '">' + p.ico + '</span><span class="nm">' + T(p.ur, p.en) + '</span></button>'; });
+  D.getElementById('tiles').innerHTML = h;
+  if (cur) { var a = D.querySelector('.tile[data-p="' + cur.id + '"]'); if (a) a.classList.add('act'); }
+ }
+ function ctlHtml(p, g, x) {
+  var k = key(p, g, x), v = get(k), c = CL[x], lab = T(c[0], c[1]);
+  if (x === 'f') return '<div class="ctl"><label>' + lab + '</label><select data-k="' + k + '" data-x="f">' + FONTS + '</select></div>';
+  return '<div class="ctl"><label>' + lab + '</label><div class="step" data-def="' + c[2] + '"><button type="button" class="sb" data-d="-1">−</button><input type="number" min="1" max="100" step="1" inputmode="numeric" placeholder="Auto" data-k="' + k + '" data-x="' + x + '" value="' + v + '"><button type="button" class="sb" data-d="1">+</button></div></div>';
+ }
+ function sampleCss(p, g) {
+  var s = parseInt(get(key(p, g, 's')), 10), f = get(key(p, g, 'f'));
+  return (s >= 1 && s <= 100 ? 'font-size:' + s + 'px;' : 'font-size:14px;') + (f ? 'font-family:' + f + ';' : '');
+ }
+ function open(id) {
+  cur = PAGES.filter(function (p) { return p.id === id; })[0]; if (!cur) return;
+  D.body.classList.add('in-panel'); tiles();
+  var ic = D.getElementById('pIc'); ic.textContent = cur.ico; ic.style.background = cur.c;
+  D.getElementById('pNm').textContent = T(cur.ur, cur.en);
+  var h = '';
+  cur.g.forEach(function (g) {
+   var set = g.ctl.split('').some(function (x) { return get(key(cur, g, x)); });
+   var hasText = g.ctl.indexOf('s') >= 0 || g.ctl.indexOf('f') >= 0;
+   h += '<div class="grp' + (set ? ' set' : '') + '" data-g="' + g.id + '" style="--gc:' + cur.c + '"><div class="gh"><b>' + T(g.ur, g.en) + '</b><button class="gr" type="button" data-rg="' + g.id + '" title="' + T('ڈیفالٹ', 'Reset') + '">↺</button></div><div class="rg2">';
+   g.ctl.split('').forEach(function (x) { h += ctlHtml(cur, g, x); });
+   h += '</div>' + (hasText ? '<div class="sample" id="sm_' + g.id + '" style="' + sampleCss(cur, g) + '">' + T('نمونہ: حسین وانہ  ۱۲۳٬۴۵۶  Aa 123', 'Sample: Hussain Wana  123,456') + '</div>' : '') + '</div>';
+  });
+  D.getElementById('groups').innerHTML = h;
+  Array.prototype.forEach.call(D.querySelectorAll('#groups select[data-k]'), function (s) { s.value = get(s.getAttribute('data-k')); });
+  try { history.replaceState(null, '', '#' + id); } catch (e) {}
+  scrollTo(0, 0);
+ }
+ function close() { D.body.classList.remove('in-panel'); cur = null; tiles(); if (wide.matches) { open(PAGES[1].id); return; } try { history.replaceState(null, '', location.pathname); } catch (e) {} scrollTo(0, 0); }
+ function refreshGroup(el) {
+  var gid = el.closest('.grp').getAttribute('data-g'), g = cur.g.filter(function (x) { return x.id === gid; })[0];
+  var set = g.ctl.split('').some(function (x) { return get(key(cur, g, x)); });
+  el.closest('.grp').classList.toggle('set', set);
+  var sm = D.getElementById('sm_' + gid); if (sm) sm.setAttribute('style', sampleCss(cur, g));
+ }
+ D.getElementById('tiles').addEventListener('click', function (e) { var t = e.target.closest('.tile'); if (t) open(t.getAttribute('data-p')); });
+ D.getElementById('groups').addEventListener('click', function (e) {
+  var rg = e.target.closest('[data-rg]');
+  if (rg) { var g = cur.g.filter(function (x) { return x.id === rg.getAttribute('data-rg'); })[0]; g.ctl.split('').forEach(function (x) { put(key(cur, g, x), ''); }); open(cur.id); toast(); return; }
+  var b = e.target.closest('.sb'); if (!b) return;
+  var st = b.parentNode, inp = st.querySelector('input'), def = parseInt(st.getAttribute('data-def'), 10) || 14, v = parseInt(inp.value, 10);
+  if (!(v >= 1)) v = def; else v += parseInt(b.getAttribute('data-d'), 10);
+  inp.value = Math.max(1, Math.min(100, v)); inp.dispatchEvent(new Event('change', { bubbles: true }));
+ });
+ D.getElementById('groups').addEventListener('change', function (e) {
+  var el = e.target; if (!el.getAttribute || !el.getAttribute('data-k')) return;
+  var v = el.value; if (el.tagName === 'INPUT') { var n = parseInt(v, 10); v = n >= 1 ? String(Math.min(100, n)) : ''; el.value = v; }
+  put(el.getAttribute('data-k'), v); refreshGroup(el); toast(); tiles();
+ });
+ D.getElementById('pBack').onclick = close;
+ D.getElementById('pRst').onclick = function () {
+  if (!cur || !confirm(T('اس صفحے کی تمام سائز سیٹنگز ڈیفالٹ ہو جائیں گی۔ ٹھیک ہے؟', 'Reset all size settings of this page?'))) return;
+  cur.g.forEach(function (g) { g.ctl.split('').forEach(function (x) { put(key(cur, g, x), ''); }); }); open(cur.id); toast();
+ };
+ D.getElementById('btnAllReset').onclick = function () {
+  if (!confirm(T('تمام صفحات کی سائز سیٹنگز ڈیفالٹ ہو جائیں گی۔ ٹھیک ہے؟', 'Reset size settings of ALL pages?'))) return;
+  PAGES.forEach(function (p) { p.g.forEach(function (g) { g.ctl.split('').forEach(function (x) { put(key(p, g, x), ''); }); }); }); close(); toast();
+ };
+ D.getElementById('btnBack').onclick = function () { if (D.body.classList.contains('in-panel') && !wide.matches) close(); else if (history.length > 1) history.back(); else location.href = './branches.html'; };
+ D.getElementById('ttl').textContent = '📐 ' + T('سائز سیٹنگز', 'Size Settings');
+ D.getElementById('btnAllReset').title = T('سب ڈیفالٹ', 'Reset all');
+ D.getElementById('btnAllReset').textContent = '↩ ' + T('سب', 'All');
+ D.getElementById('pBack').textContent = '‹ ' + T('تمام صفحات', 'All pages');
+ D.getElementById('pRst').textContent = '↩ ' + T('ڈیفالٹ', 'Reset');
+ D.getElementById('hint').textContent = T('جس صفحے کا سائز بدلنا ہے اس کے بٹن پر ٹیپ کریں۔ ہر خانے میں 1 سے 100 تک سائز لکھیں یا + / − دبائیں؛ خالی چھوڑیں تو ڈیفالٹ رہے گا۔ ہر تبدیلی فوراً محفوظ ہوتی ہے (صرف اسی ڈیوائس پر)۔ رنگ یہاں نہیں بدلتے، صرف سائز۔', 'Tap a page to change its sizes. Enter 1–100 or use + / −; leave blank for default. Changes save instantly (this device only). Sizes only, no colours.');
+ tiles();
+ var hs = (location.hash || '').slice(1); if (hs) open(hs); else if (wide.matches) open(PAGES[1].id);
+})();
+</script>
+</body>
+</html>
